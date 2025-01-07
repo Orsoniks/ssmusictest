@@ -12,3 +12,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Created by qwertyquerty"
   source: "https://github.com/BeeStation/BeeStation-Hornet/commit/7f48971438492805af286023a72e7609a729234a"
+
+- files: ["save_the_station.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by Orsoniks"
+  source: "https://soundcloud.com/orsoniks/save-the-station"

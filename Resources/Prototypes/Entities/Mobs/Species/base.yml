@@ -66,8 +66,10 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#FF0000"
-      Burn:
+    damageOverlayTypes:
+      Cold:
         sprite: Mobs/Effects/burn_damage.rsi
+        color: "#0000FF"
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:

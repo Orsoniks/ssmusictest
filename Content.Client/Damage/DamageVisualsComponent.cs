@@ -58,6 +58,14 @@ public sealed partial class DamageVisualsComponent : Component
     [DataField("damageOverlayGroups")] public  Dictionary<string, DamageVisualizerSprite>? DamageOverlayGroups;
 
     /// <summary>
+    ///     The actual sprites for every damage type
+    ///     that the entity should display visually.
+    ///
+    ///     This will not work with overlay set to false!
+    /// </summary>
+    [DataField("damageOverlayGroups")] public  Dictionary<string, DamageVisualizerSprite>? DamageOverlayTypes;
+
+    /// <summary>
     ///     Sets if you want sprites to overlay the
     ///     entity when damaged, or if you would
     ///     rather have each target layer's state

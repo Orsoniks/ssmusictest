@@ -182,6 +182,22 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
 
                 damageVisComp.LastThresholdPerGroup.Add(damageVisComp.DamageGroup, FixedPoint2.Zero);
             }
+            // Ditto but with damage types
+            if (damageVisComp.DamageOverlayTypes != null)
+            {
+                foreach (var damageType in damageVisComp.DamageOverlayTypes.Keys)
+                {
+                    //skipping check as im not sure how to go about it
+                    /*if (!damageContainer.SupportedTypes.Contains(damageType))
+                    {
+                        Log.Error($"Damage key {damageType} was invalid for entity {entity}.");
+                        damageVisComp.Valid = false;
+                        return;
+                    }*/
+
+                    damageVisComp.LastThresholdPerGroup.Add(damageType, FixedPoint2.Zero);
+                }
+            }
         }
         // Ditto above, but instead we go through every group.
         else // oh boy! time to enumerate through every single group!
@@ -212,6 +228,15 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 }
 
                 damageVisComp.LastThresholdPerGroup.Add(damageVisComp.DamageGroup, FixedPoint2.Zero);
+            }
+
+
+            if (damageVisComp.DamageOverlayTypes != null)
+            {
+                foreach (var damageType in damageVisComp.DamageOverlayTypes.Keys)
+                {
+                    damageVisComp.LastThresholdPerGroup.Add(damageType, FixedPoint2.Zero);
+                }
             }
         }
 
@@ -315,6 +340,19 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                     $"DamageOverlay_{damageVisComp.Thresholds[1]}",
                     "DamageOverlay");
                 damageVisComp.TopMostLayerKey = $"DamageOverlay";
+            }
+
+
+            if (damageVisComp.DamageOverlayTypes != null)
+            {
+                foreach (var (type, sprite) in damageVisComp.DamageOverlayTypes)
+                {
+                    AddDamageLayerToSprite((entity, spriteComponent),
+                        sprite,
+                        $"DamageOverlay_{type}_{damageVisComp.Thresholds[1]}",
+                        $"DamageOverlay{type}");
+                    damageVisComp.TopMostLayerKey = $"DamageOverlay{type}";
+                }
             }
         }
     }
